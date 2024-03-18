@@ -60,6 +60,7 @@ The MS17-010 patch fixes the vulnerability.
 * STC telecom ([saudia arabia](https://twitter.com/iPhone_Supp/status/863735059819442177), [more](https://twitter.com/mhooh300/status/863734116142985216), [more](https://twitter.com/bynfck/status/863734011188854784))
 * [All ATMs in india closed](http://newsable.asianetnews.tv/india/over-2-lakh-atms-in-the-country-to-remain-closed-to-deal-with-cyberattack)
 * US radiology equipment https://twitter.com/Forbes/status/864850749225934852
+* BUMN (soon)
 * More at https://en.wikipedia.org/wiki/WannaCry_cyber_attack#List_of_affected_organizations they seem to be cataloguing the infections faster/better.
 
 
