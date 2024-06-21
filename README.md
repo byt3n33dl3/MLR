@@ -1,103 +1,77 @@
-# WannaCry | Ransomware Worm 
+## Doom and Worm Dev
 
-* **Virus Name**: WannaCrypt, WannaCry, WanaCrypt0r, WCrypt, WCRY
-* **Vector**: All Windows versions before Windows 10 are vulnerable if not patched for MS-17-010. It uses EternalBlue MS17-010 to propagate.
-* **Ransom**: between $300 to $600. There is code to 'rm' (delete) files in the virus. Seems to reset if the virus crashes.
-* **Backdooring**: The worm loops through every RDP session on a system to run the ransomware as that user. It also installs the DOUBLEPULSAR backdoor. It corrupts shadow volumes to make recovery harder. (source: malwarebytes)
-* **Kill switch**: If the website `www.iuqerfsodp9ifjaposdfjhgosurijfaewrwergwea.com` is up the virus exits instead of infecting the host. (source: malwarebytes). This domain has been sinkholed, stopping the spread of the worm. Will not work if proxied ([source](https://blog.didierstevens.com/2017/05/13/quickpost-wcry-killswitch-check-is-not-proxy-aware/)).
+### Computer Virus:
 
-## Liability Disclaimer:
-To the maximum extent permitted by applicable law, I shall not be held liable for any indirect, incidental, special, consequential or punitive damages, or any loss of profits or revenue, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses, resulting from (i) your access to this resource and/or inability to access this resource; (ii) any conduct or content of any third party referenced by this resource, including without limitation, any defamatory, offensive or illegal conduct or other users or third parties; (iii) any content obtained from this resource
+Doom Virus (Tech Context):
+The Doom Virus is a highly sophisticated and destructive piece of malware designed to infiltrate and decimate computer systems. Once activated, it spreads rapidly through networks, corrupting files, disabling security protocols, and rendering critical applications inoperable. Its unique ability to adapt and evolve makes it exceptionally difficult to detect and eradicate. The Doom Virus leaves a trail of chaos, causing significant data loss 
+and operational disruptions, often necessitating a complete system overhaul to recover.
 
+### Video Game Mod:
 
-# Vulnerable/Not Vulnerable
+Doom Virus (Gaming Context):
+In the world of video games, the Doom Virus is an infamous and legendary mod for the classic game "Doom." This mod introduces a malevolent AI that takes over the game, dynamically altering levels, spawning unpredictable enemies, and corrupting in-game assets in real-time. Players must navigate an increasingly unstable and hostile environment, where the very rules of the game can change at any moment. The Doom Virus mod challenges even the most skilled players, offering a relentless and ever-changing experience that keeps them on the edge of their seats.
 
-To be infected requires the SMB port (445) to be open, or the machine already infected with DOUBLEPULSAR (and killswitch not registered or somehow blocked, or the network accessing it through a proxy).
+### Metaphorical Use:
 
-The MS17-010 patch fixes the vulnerability.
+Doom Virus (Metaphorical Context)
+The term "Doom Virus" has come to symbolize a pervasive and insidious problem that spreads unchecked, causing widespread damage. Whether referring to a toxic ideology, a harmful social trend, or an economic crisis, the Doom Virus represents an existential threat that undermines stability and sows chaos. It is characterized by its rapid proliferation and the difficulty in containing it, demanding comprehensive and coordinated efforts to address and neutralize its impact.
 
-* Windows XP: Doesn't spread. If run manually, can encrypt files.
-* Windows 7,8,2008: can spread unpatched, can encrypt files.
-* Windows 10: Doesn't spread. Even though Windows 10 [does have the faulty SMB driver](http://www.infoworld.com/article/3196825/microsoft-windows/how-to-make-sure-your-windows-pc-wont-get-hit-by-ransomware-like-wannacrypt.html).
-* Linux: Doesn't spread. If run manually with wine, can encrypt files.
+### Science Fiction or Literature:
 
-# Infections
-![wannaCry](https://github.com/Sulaimannabdul/Ransomware-Worm/assets/151133481/6d17b0b8-2daf-4010-b1f4-b765ee355b9a)
+Doom Virus (Sci-Fi Context)
+In the distant future, humanity faces a new and terrifying threat: the Doom Virus. This bioengineered pathogen was created as a weapon of war but escaped containment, ravaging entire planets. The Doom Virus infects both organic and synthetic lifeforms, rewiring their systems and turning them into mindless, destructive entities. As it spreads through the galaxy, a small band of survivors must find a way to stop the Doom Virus before it consumes all life. Their journey takes them to the edges of known space and beyond, where they uncover the dark origins of the virus and the key to humanity's survival.
 
-# Cryptography details
+## Software Vulnerabilities
 
-* Each infection generates a new RSA-2048 keypair.
-* The public key is exported as blob and saved to 00000000.pky
-* The private key is encrypted with the ransomware public key and saved as 00000000.eky
-* Each file is encrypted using AES-128-CBC, with a unique AES key per file.
-* Each AES key is generated CryptGenRandom.
-* The AES key is encrypted using the infection specific RSA keypair.
+Buffer Overflow The Doom Virus could exploit buffer overflow vulnerabilities in applications to execute arbitrary code, gaining control over the system.
+Unpatched Software It might target systems with outdated software that lacks the latest security patches, exploiting known vulnerabilities to infiltrate the system.
+Zero-Day Exploits The virus could use previously unknown vulnerabilities (zero-day exploits) to bypass security measures and gain unauthorized access.
 
-The RSA public key used to encrypt the infection specific RSA private key is embedded inside the DLL and owned by the ransomware authors.
+Network Vulnerabilities
 
-* https://haxx.in/key1.bin (the ransomware pubkey, used to encrypt the users private key)
-* https://haxx.in/key2.bin (the dll decryption privkey)
-the CryptImportKey() rsa key blob dumped from the DLL by blasty.
+Open Ports By scanning for open network ports, the Doom Virus can exploit services running on these ports to spread through the network.
+Weak Passwords It can perform brute force attacks on systems with weak or default passwords, gaining administrative access.
+Unsecured Wi-Fi Targeting unsecured or poorly secured Wi-Fi networks to intercept and inject malicious payloads into network traffic.
 
-https://pastebin.com/aaW2Rfb6 even more in depth RE information by cyg_x1!!
+Human Vulnerabilities
 
+Phishing Attacks The Doom Virus could use sophisticated phishing techniques to trick users into downloading and executing the malware.
+Social Engineering Manipulating individuals to gain confidential information or access credentials that facilitate the virus's spread.
 
-# Bitcoin ransom addresses
+Video Game Mod Vulnerabilities
 
-3 addresses hard coded into the malware.
+Game Engine Exploits
 
-* https://blockchain.info/address/13AM4VW2dhxYgXeQepoHkHSQuy6NgaEb94
-* https://blockchain.info/address/12t9YDPgwueZ9NyMgw519p7AA8isjr6SMw
-* https://blockchain.info/address/115p7UMMngoj1pMvkpHijcRdfJNXj6LrLn
+Code Injection The Doom Virus mod could exploit vulnerabilities in the game engine to inject malicious code that alters game behavior.
+Asset Corruption It might target the game's asset management system, corrupting textures, models, and other resources to create chaos.
 
+Multiplayer Vulnerabilities
 
-# Languages
+Server Exploits The mod could exploit vulnerabilities in multiplayer servers, causing widespread disruption in online gameplay.
+Player Data Manipulation Accessing and corrupting player data files to impact user progress and experience.
 
-All language ransom messages available here
+Metaphorical Vulnerabilities
 
-m_bulgarian, m_chinese (simplified), m_chinese (traditional), m_croatian, m_czech, m_danish, m_dutch, m_english, m_filipino, m_finnish, m_french, m_german, m_greek, m_indonesian, m_italian, m_japanese, m_korean, m_latvian, m_norwegian, m_polish, m_portuguese, m_romanian, m_russian, m_slovak, m_spanish, m_swedish, m_turkish, m_vietnamese
+Social Vulnerabilities
 
-# File types
+Misinformation The Doom Virus could exploit people's susceptibility to misinformation, spreading false information rapidly through social media.
+Polarization Taking advantage of societal divisions and increasing polarization to weaken communal bonds and stability.
 
-There are a number of files and folders wannacrypt will avoid. Some because it's entirely pointless and others because it might destabilize the system. During scans, it will search the path for the following strings and skip over if present:
+Economic Vulnerabilities
 
-*   "Content.IE5"
-*   "Temporary Internet Files"
-*   " This folder protects against ransomware. Modifying it will reduce protection"
-*   "\Local Settings\Temp"
-*   "\AppData\Local\Temp"
-*   "\Program Files (x86)"
-*   "\Program Files"
-*   "\WINDOWS"
-*   "\ProgramData"
-*   "\Intel"
-*   "$\"
+Market Instability Exploiting vulnerabilities in financial systems or markets to cause economic disruption and instability.
+Supply Chain Disruptions Targeting weak points in global supply chains to create shortages and increase chaos.
 
-The filetypes it looks for to encrypt are:
+Science Fiction or Literature Vulnerabilities
 
-.doc, .docx, .xls, .xlsx, .ppt, .pptx, .pst, .ost, .msg, .eml, .vsd, .vsdx, .txt, .csv, .rtf, .123, .wks, .wk1, .pdf, .dwg, .onetoc2, .snt, .jpeg, .jpg, .docb, .docm, .dot, .dotm, .dotx, .xlsm, .xlsb, .xlw, .xlt, .xlm, .xlc, .xltx, .xltm, .pptm, .pot, .pps, .ppsm, .ppsx, .ppam, .potx, .potm, .edb, .hwp, .602, .sxi, .sti, .sldx, .sldm, .sldm, .vdi, .vmdk, .vmx, .gpg, .aes, .ARC, .PAQ, .bz2, .tbk, .bak, .tar, .tgz, .gz, .7z, .rar, .zip, .backup, .iso, .vcd, .bmp, .png, .gif, .raw, .cgm, .tif, .tiff, .nef, .psd, .ai, .svg, .djvu, .m4u, .m3u, .mid, .wma, .flv, .3g2, .mkv, .3gp, .mp4, .mov, .avi, .asf, .mpeg, .vob, .mpg, .wmv, .fla, .swf, .wav, .mp3, .sh, .class, .jar, .java, .rb, .asp, .php, .jsp, .brd, .sch, .dch, .dip, .pl, .vb, .vbs, .ps1, .bat, .cmd, .js, .asm, .h, .pas, .cpp, .c, .cs, .suo, .sln, .ldf, .mdf, .ibd, .myi, .myd, .frm, .odb, .dbf, .db, .mdb, .accdb, .sql, .sqlitedb, .sqlite3, .asc, .lay6, .lay, .mml, .sxm, .otg, .odg, .uop, .std, .sxd, .otp, .odp, .wb2, .slk, .dif, .stc, .sxc, .ots, .ods, .3dm, .max, .3ds, .uot, .stw, .sxw, .ott, .odt, .pem, .p12, .csr, .crt, .key, .pfx, .der
+Biological Vulnerabilities
 
-credit herulume, thanks for extracting this list from the binary.
+Genetic Susceptibility The Doom Virus might exploit genetic weaknesses in certain populations, spreading more effectively among them.
+Immune System Evasion Developing mechanisms to evade the immune systems of both humans and other organisms.
 
-more details came from https://pastebin.com/xZKU7Ph1 thanks to cyg_x11
+Technological Vulnerabilities
 
-# Some other interesting strings 
+AI and Robotics Exploiting vulnerabilities in AI and robotic systems to take control and turn them against their operators.
+Interstellar Travel Systems Targeting the complex systems involved in interstellar travel, causing ships to malfunction or become untraceable.
 
-* BAYEGANSRV\administrator
-* Smile465666SA
-* wanna18@hotmail.com
-
-credit: nulldot https://pastebin.com/0LrH05y2
-
-# Encrypted file format
-
-```
-typedef struct _wc_file_t {
-    char     sig[WC_SIG_LEN]     // 64 bit signature WANACRY!
-    uint32_t keylen;             // length of encrypted key
-    uint8_t  key[WC_ENCKEY_LEN]; // AES key encrypted with RSA
-    uint32_t unknown;            // usually 3 or 4, unknown
-    uint64_t datalen;            // length of file before encryption, obtained from GetFileSizeEx
-    uint8_t *data;               // Ciphertext Encrypted data using AES-128 in CBC mode
-} wc_file_t;
-```
+*Note: Educational purposes only, thanks for several repo, etc.*
